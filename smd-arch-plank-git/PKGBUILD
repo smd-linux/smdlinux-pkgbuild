@@ -1,0 +1,25 @@
+# Maintainer: Seth Dawson <seth@sethdawson.me>
+pkgname=smd-arch-plank-git
+_pkgname=smd-arch-plank
+_destname1="/etc/skel/.config/plank/dock1/launchers/"
+_licensedir="/usr/share/smd-arch/licenses/"
+pkgver=1.1
+pkgrel=7
+pkgdesc="plank config for smd-arch"
+arch=('any')
+url="https://github.com/smd-linux/smd-arch-plank"
+license=('GPL3')
+makedepends=('git')
+depends=()
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${_pkgname}::"git+https://github.com/smd-linux/${_pkgname}.git")
+sha256sums=('SKIP')
+install='readme.install'
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	install -dm755 ${pkgdir}${_destname1}
+	cp -r ${srcdir}/${_pkgname}${_destname1}* ${pkgdir}${_destname1}
+}

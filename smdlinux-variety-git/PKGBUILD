@@ -1,0 +1,31 @@
+# Maintainer: Seth Dawson <seth.dawson@hotmail.com>
+pkgname=smdlinux-variety-git
+_pkgname=smdlinux-variety
+_destname1="/etc/skel/.config/variety/"
+_destname2="/etc/skel/.config/autostart/"
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=2.0.0
+pkgrel=2
+pkgdesc="variety config for smdlinux"
+arch=('any')
+url="https://github.com/smd-linux/smdlinux-variety"
+license=('GPL3')
+makedepends=('git')
+depends=('bash')
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${_pkgname}::"git+https://github.com/smd-linux/${_pkgname}.git")
+sha256sums=('SKIP')
+install='skel.install'
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	install -dm755 ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}* ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}.firstrun ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}.last_change_time ${pkgdir}${_destname1}
+
+	install -dm755 ${pkgdir}${_destname2}
+	cp -r  ${srcdir}/${_pkgname}${_destname2}* ${pkgdir}${_destname2}
+}

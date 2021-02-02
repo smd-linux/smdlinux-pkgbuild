@@ -1,0 +1,17 @@
+
+post_install() {
+	systemctl disable reflector.service
+	systemctl disable reflector.timer
+	tput setaf 2;echo -e "\n** You can disregard the message if the service was already disabled.**";tput sgr0
+}
+
+post_upgrade() {
+    post_install
+}
+
+
+post_remove() {
+	systemctl disable reflector.service
+	systemctl disable reflector.timer
+	tput setaf 2;echo "You can disregard the message if the service was already disabled.";tput sgr0
+}

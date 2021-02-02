@@ -1,0 +1,46 @@
+# Maintainer: Seth Dawson <seth.dawson@hotmail.com>
+pkgname=smd-arch-system-config-git
+_pkgname=smd-arch-system-config
+_destname1="/etc/modprobe.d"
+_destname2="/etc/X11/xorg.conf.d"
+_destname3="/usr/share/icons/hicolor/256x256/apps"
+_destname4="/usr/local/bin"
+_destname5="/etc/systemd/system/"
+_destname6="/etc/pacman.d/hooks/"
+_licensedir="/usr/share/arcolinux/licenses/"
+pkgver=1.1
+pkgrel=1
+pkgdesc="Configuration files for smd-arch"
+arch=('any')
+url="https://github.com/smd-linux/smd-arch-system-config"
+license=('GPL3')
+makedepends=('git')
+depends=()
+provides=("${pkgname}")
+options=( !strip !emptydirs )
+source=(${pkgname}::"git+https://github.com/smd-linux/${_pkgname}")
+sha256sums=('SKIP')
+install='readme.install'
+package() {
+  install -dm755 "$pkgdir/$_licensedir/$_pkgname"
+  install -m644 "$srcdir/$pkgname/LICENSE" "$pkgdir/$_licensedir/$_pkgname"
+
+  install -dm755 "$pkgdir$_destname1"
+  install -m644 "$srcdir/$pkgname/$_destname1/"* "$pkgdir$_destname1"
+
+  install -dm755 "$pkgdir$_destname2"
+  install -m644 "$srcdir/$pkgname/$_destname2/"* "$pkgdir$_destname2"
+
+  install -dm755 "$pkgdir$_destname3"
+  install -m644 "$srcdir/$pkgname/$_destname3/"* "$pkgdir$_destname3"
+
+  install -dm755 "$pkgdir$_destname4"
+  install -m755 "$srcdir/$pkgname/$_destname4/"* "$pkgdir$_destname4"
+
+  install -dm755 "$pkgdir$_destname5"
+  install -m644 "$srcdir/$pkgname/$_destname5/"* "$pkgdir$_destname5"
+
+  install -dm755 "$pkgdir$_destname6"
+  install -m644 "$srcdir/$pkgname/$_destname6/"* "$pkgdir$_destname6"
+
+}

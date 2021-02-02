@@ -1,0 +1,38 @@
+# Maintainer: Seth Dawson <seth.dawson@hotmail.com>
+pkgname=smdlinux-conky-plasma-git
+_pkgname=smdlinux-conky-plasma
+_destname1="/etc/skel/.config/conky/"
+_destname2="/etc/skel/.config/autostart/"
+_destname3="/usr/share/applications/"
+_destname4="/usr/local/bin/"
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=2.0.0
+pkgrel=1
+pkgdesc="Conky themes for SMD Linux KDE Plasma"
+arch=('any')
+url="https://github.com/smd-linux/smdlinux-conky-plasma"
+license=('GPL3')
+makedepends=('git')
+depends=('python' 'bash')
+conflicts=('smdlinux-conky-git')
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${_pkgname}::"git+https://github.com/smd-linux/${_pkgname}.git")
+sha256sums=('SKIP')
+install='readme.install'
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	install -dm755 ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}* ${pkgdir}${_destname1}
+
+	install -dm755 ${pkgdir}${_destname2}
+	cp -r  ${srcdir}/${_pkgname}${_destname2}* ${pkgdir}${_destname2}
+
+	install -dm755 ${pkgdir}${_destname3}
+	cp -r  ${srcdir}/${_pkgname}${_destname3}* ${pkgdir}${_destname3}
+
+	install -dm755 ${pkgdir}${_destname4}
+	cp -r  ${srcdir}/${_pkgname}${_destname4}* ${pkgdir}${_destname4}		
+}
