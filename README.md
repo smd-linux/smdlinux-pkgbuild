@@ -1,2 +1,2 @@
-# smd-linux-template
-Template for Repositories
+# smdlinux-pkgbuild
+pkgbuilds for smdlinux
