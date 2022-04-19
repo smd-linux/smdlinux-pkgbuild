@@ -1,0 +1,25 @@
+# Maintainer: Seth Dawson <seth.dawson@hotmail.com>
+pkgname=smdlinux-bin-git
+_pkgname=smdlinux-bin
+_destname1="/etc/skel/.bin/"
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=2.0.0
+pkgrel=2
+pkgdesc=".bin folder from smdlinux providing fun and useful scripts"
+arch=('any')
+url="https://github.com/smd-linux/smdlinux-bin"
+license=('GPL3')
+makedepends=('git')
+depends=('bash' 'wmctrl' 'pacman-contrib')
+provides=("${pkgname}")
+#options=(!strip !emptydirs)
+source=(${_pkgname}::"git+https://github.com/smd-linux/${_pkgname}")
+sha256sums=('SKIP')
+install='readme.install'
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	install -dm755 ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}* ${pkgdir}${_destname1}
+}

@@ -1,0 +1,23 @@
+# Maintainer: Seth Dawson <smdlinux@sethdawson.me>
+pkgname=smdlinux-splash-dark-plasma-git
+_pkgname=smdlinux-splash-dark-plasma
+_destname1="/usr/share/plasma/look-and-feel/SMDLinux-Splash-Dark/"
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=2.0.0
+pkgrel=2
+pkgdesc="Splash Screen for SMD-Linux"
+arch=('x86_64')
+url="https://github.com/smd-linux/smdlinux-splash-dark-plasma"
+license=('GPL3')
+makedepends=('git')
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${_pkgname}::"git+https://github.com/smd-linux/${_pkgname}.git")
+sha256sums=('SKIP')
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	install -dm755 ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}* ${pkgdir}${_destname1}
+}

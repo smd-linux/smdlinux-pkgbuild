@@ -1,0 +1,26 @@
+# Maintainer: Seth Dawson <seth@sethdawson.me>
+pkgname=smd-arch-local-xfce4-git
+_pkgname=smd-arch-local-xfce4
+_destname1="/etc/skel/.local/share/xfce4/helpers/"
+_licensedir="/usr/share/smd-arch/licenses/"
+pkgver=1.1
+pkgrel=1
+pkgdesc="local for arcolinux"
+arch=('any')
+url="https://github.com/smd-linux/arch-local-xfce4"
+license=('GPL3')
+makedepends=('git')
+replaces=('smd-arch-local-git')
+depends=()
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${_pkgname}::"git+https://github.com/smd-linux/${_pkgname}.git")
+sha256sums=('SKIP')
+install='readme.install'
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	install -dm755 ${pkgdir}${_destname1}
+	install -m644  ${srcdir}/${_pkgname}${_destname1}* ${pkgdir}${_destname1}
+}

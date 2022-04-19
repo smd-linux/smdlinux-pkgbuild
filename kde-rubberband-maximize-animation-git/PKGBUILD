@@ -1,0 +1,18 @@
+# Maintainer: Seth Dawson <seth@sethdawson.me>
+pkgname=kde-rubberband-maximize-animation-git
+_pkgname=KDE-Rubberband-Maximize-Animation
+pkgver=r2.73cea28
+pkgrel=2
+pkgdesc="Window maximize/restore animation similar to Windows 10"
+arch=('any')
+url="https://github.com/alex47/KDE-Rubberband-Maximize-Animation"
+license=('GPL3')
+depends=('kwin')
+makedepends=('git')
+source=("git+${url}.git")
+sha256sums=('SKIP')
+install='readme.install'
+package() {
+	mkdir -p ${pkgdir}/etc/skel/.local/share/kwin/effects/kwin4_effect_rubberband_maximize
+	cp -r  ${srcdir}/${_pkgname}/kwin4_effect_rubberband_maximize/* ${pkgdir}/etc/skel/.local/share/kwin/effects/kwin4_effect_rubberband_maximize
+}

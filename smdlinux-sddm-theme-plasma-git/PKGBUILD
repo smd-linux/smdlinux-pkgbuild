@@ -1,0 +1,28 @@
+# Maintainer: Seth Dawson <seth.dawson@hotmail.com>
+pkgname=smdlinux-sddm-theme-plasma-git
+_pkgname=smdlinux-sddm-theme-plasma
+_destname1="/usr"
+_destname2="/etc/sddm.conf.d/"
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=2.0.0
+pkgrel=2
+pkgdesc="SMDLinux SDDM theme for KDE Plasma"
+arch=('any')
+url="https://github.com/smd-linux/${_pkgname}"
+license=('GPL3')
+depends=()
+makedepends=('git')
+options=(!strip !emptydirs)
+replaces=()
+source=("${_pkgname}::git+https://github.com/smd-linux/smdlinux-sddm-theme-plasma")
+sha256sums=('SKIP')
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	cp -r ${srcdir}/${_pkgname}/${_destname1} ${pkgdir}
+	#cp -r ${srcdir}/${_pkgname}/${_destname2} ${pkgdir}
+
+	install -dm755 ${pkgdir}${_destname2}
+	cp -r  ${srcdir}/${_pkgname}${_destname2}* ${pkgdir}${_destname2}
+}

@@ -1,0 +1,25 @@
+# Maintainer: Seth Dawson <smdlinux@sethdawson.me>
+pkgname=smdlinux-zsh-git
+_pkgname=smdlinux-zsh
+_destname1="/etc/skel/"
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=2.0.0
+pkgrel=3
+pkgdesc="zsh configs from SMD-Linux"
+arch=('any')
+url="https://github.com/smd-linux/smdlinux-zsh"
+license=('GPL3')
+makedepends=('git')
+depends=('bash')
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${_pkgname}::"git+https://github.com/smd-linux/${_pkgname}.git")
+sha256sums=('SKIP')
+install='readme.install'
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	install -dm755 ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}.zshrc ${pkgdir}${_destname1}
+}

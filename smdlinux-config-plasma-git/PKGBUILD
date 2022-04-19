@@ -1,0 +1,52 @@
+# Maintainer: Seth Dawson <seth.dawson@hotmail.com>
+pkgname=smdlinux-config-plasma-git
+_pkgname=smdlinux-config-plasma
+_destname="/etc"
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=2.0.0
+pkgrel=2
+pkgdesc="Configuration files for SMD-Linux Plasma"
+arch=('any')
+url="https://github.com/smd-linux/smdlinux-config-plasma"
+license=('GPL3')
+makedepends=('git')
+conflicts=(
+smdlinux-config-awesome-git
+smdlinux-config-bspwm-git
+smdlinux-config-budgie-git
+smdlinux-config-cinnamon-git
+smdlinux-config-deepin-git
+smdlinux-config-dwm-git
+smdlinux-config-enlightenment-git
+smdlinux-config-git
+smdlinux-config-gnome-git
+smdlinux-config-herbstluftwm-git
+smdlinux-config-i3wm-git
+smdlinux-config-icewm-git
+smdlinux-config-jwm-git
+smdlinux-config-kodi-git
+smdlinux-config-lxqt-git
+smdlinux-config-mate-git
+smdlinux-config-openbox-git
+#smdlinux-config-plasma-git
+smdlinux-config-plasma-nemesis-git
+smdlinux-config-qtile-git
+smdlinux-config-spectrwm-git
+smdlinux-config-sway-git
+smdlinux-config-ukui-git
+smdlinux-config-xfce-git
+smdlinux-config-xmonad-git
+smdlinux-config-xtended-git
+)
+depends=()
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${_pkgname}::"git+https://github.com/smd-linux/${_pkgname}.git")
+sha256sums=('SKIP')
+install='readme.install'
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	cp -r  ${srcdir}/${_pkgname}${_destname} ${pkgdir}${_destname}
+}

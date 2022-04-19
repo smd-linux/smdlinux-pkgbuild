@@ -1,0 +1,51 @@
+# Maintainer: Seth Dawson <seth.dawson@hotmail.com>
+pkgname=smdlinux-plasma-hblock-git
+_pkgname=hblock
+_destname="/usr/local/bin/"
+_destname_desktop="/usr/share/applications/"
+_destnamesystem="/etc/systemd/system/"
+_destnamelists="/etc/hblock"
+_licensedir="/usr/share/licenses/"
+pkgver=3.2.0
+pkgrel=1
+pkgdesc="An adblocker that creates a hosts file from automatically downloaded blacklists from Héctor Molinero Fernández"
+arch=('any')
+url="https://github.com/hectorm/hblock"
+license=('MIT')
+replaces=('hblock-git')
+backup=('etc/hosts' 'etc/hblock/allow.list' 'etc/hblock/deny.list')
+makedepends=('git')
+depends=()
+provides=("${pkgname}")
+conflicts=('hblock' 'smdlinux-hblock-git')
+options=(!strip !emptydirs)
+source=(${_pkgname}::"https://github.com/hectorm/hblock/archive/v${pkgver}.tar.gz" "advert-block.desktop")
+sha256sums=('a5a86a0e9913d88dcba7270c9e3ed37f4c626c8a6a8b5e9303a8a173824bdfee'
+            '68654f05d356042fff1208cc0875ec0e3669a96c0e52a90d14c3c6148bb80d26')
+install='readme.install'
+build() {
+	cd "$_pkgname-$pkgver"
+	make
+}
+
+package() {
+	install -d -m755 "${pkgdir}${_licensedir}${_pkgname}"
+	install -d -m755 "${pkgdir}${_destname}"
+	install -m644 "${srcdir}/${_pkgname}-${pkgver}/"LICENSE.md "${pkgdir}${_licensedir}${_pkgname}/LICENSE"
+	install -m755 "${srcdir}/${_pkgname}-${pkgver}/"hblock "${pkgdir}${_destname}hblock"
+	chown root:root ${pkgdir}${_destname}hblock
+	install -d -m755 "${pkgdir}${_destnamesystem}"
+	#install -m644 "${srcdir}/${_pkgname}-${pkgver}/"resources/systemd/hblock.service "${pkgdir}${_destnamesystem}"
+	#install -d -m755 "${pkgdir}"/usr/lib/systemd/system/
+	#install -m644 "${srcdir}/${_pkgname}/"resources/systemd/hblock.timer "${pkgdir}"/usr/lib/systemd/system/hblock.timer
+	#install -d -m755 "${pkgdir}"/etc/systemd/system/timers.target.wants
+	#cd ${pkgdir}/etc/systemd/system/timers.target.wants
+	#ln -s ../$_pkgname.timer ${pkgdir}/etc/systemd/system/timers.target.wants/$_pkgname.timer
+	install -d -m755 "${pkgdir}${_destnamelists}"
+	touch "${pkgdir}${_destnamelists}"/allow.list
+	echo "analytics.google.com" | tee "${pkgdir}${_destnamelists}"/allow.list
+	echo "marketingplatform.google.com" | tee -a "${pkgdir}${_destnamelists}"/allow.list
+	touch "${pkgdir}${_destnamelists}"/deny.list
+	install -d -m755 "${pkgdir}${_destname_desktop}"
+	install -m644 "${srcdir}/advert-block.desktop" "$pkgdir/usr/share/applications/"
+}
