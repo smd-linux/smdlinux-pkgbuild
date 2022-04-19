@@ -1,9 +1,9 @@
 #!/bin/bash
 #https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_Clean_Chroot
 
-destination1="/home/seth/SMD-ARCHLINUX-REPO/smd_archlinux_repo/x86_64/"
-destination2="/home/seth/SMD-ARCHLINUX-REPO/smd_archlinux_repo_3party/x86_64/"
-destination3="/home/seth/SMD-ARCHLINUX-REPO/smd_archlinux_repo_testing/x86_64/"
+destination1=$HOME"/Documents/smdlinux/smdlinux-repo/smdlinux_repo/x86_64/"
+destination2=$HOME"/Documents/smdlinux/smdlinux-repo/smdlinux_repo_3party/x86_64/"
+destination3=$HOME"/Documents/smdlinux/smdlinux-repo/smdlinux_repo_testing/x86_64/"
 
 destiny=$destination1
 
@@ -12,7 +12,7 @@ destiny=$destination1
 
 CHOICE=2
 
-search=smd-arch
+search=EvilArch-XFCE
 
 tput setaf 2
 echo "#############################################################################################"
