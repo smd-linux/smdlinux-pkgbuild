@@ -1,13 +1,13 @@
 # Maintainer: Seth Dawson <seth@sethdawson.me>
-pkgname=smdlinux-arc-themes-nico-git
-_pkgname=arcolinux-arc-themes-nico
+pkgname=smdlinux-arc-themes-git
+_pkgname=smdlinux-arc-themes
 _destname1="/usr/share/themes/"
-_licensedir="/usr/share/arcolinux/licenses/"
-pkgver=20.4
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=1.0
 pkgrel=1
-pkgdesc="Arc themes created for arcolinux with Arc Colora script - Nico Hood"
+pkgdesc="Arc themes created for smdlinux with Arc Colora script"
 arch=('any')
-url="https://github.com/arcolinux/arcolinux-arc-themes-nico"
+url="https://github.com/smd-linux/smdlinux-arc-themes"
 license=('GPL3')
 makedepends=('git')
 depends=()

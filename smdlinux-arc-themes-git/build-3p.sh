@@ -1,14 +1,13 @@
 #!/bin/bash
 #https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_Clean_Chroot
 
-destination1=$HOME"/SMDLINUX/SMDLINUX-REPO/smdlinux_repo/x86_64/"
-destination2=$HOME"/SMDLINUX/SMDLINUX-REPO/smdlinux_repo_3party/x86_64/"
-destination3=$HOME"/SMDLINUX/SMDLINUX-REPO/smdlinux_repo_iso/x86_64/"
-destination4=$HOME"/SMDLINUX/SMDLINUX-REPO/smdlinux_repo_testing/x86_64/"
-destination5=$HOME"/SMDLINUX/SMDLINUX-REPO/smdlinux_repo_xlarge/x86_64/"
-destination6=$HOME"/SMDLINUX/TEST/"
+destination1=$HOME"/Documents/smdlinux/smdlinux-repo/smdlinux_repo/x86_64/"
+destination2=$HOME"/Documents/smdlinux/smdlinux-repo/smdlinux_repo_3party/x86_64/"
+destination3=$HOME"/Documents/smdlinux/smdlinux-repo/smdlinux_repo_iso/x86_64/"
+destination4=$HOME"/Documents/smdlinux/smdlinux-repo/smdlinux_repo_testing/x86_64/"
+destination7=$HOME"/Documents/smdlinux/archives/packages"
 
-destiny=$destination1
+destiny=$destination2
 
 # 2. makepkg"
 # 1. chroot"
@@ -17,8 +16,7 @@ CHOICE=1
 pwdpath=$(echo $PWD)
 pwd=$(basename "$PWD")
 
-#which packages are always going to be build with makepkg or choice 2
-makepkglist="smdlinux-dwm-slstatus-git smdlinux-dwm-st-git smdlinux-conky-collection-git smdlinux-conky-collection-plasma-git arco-dwm smdlinux-betterlockscreen smdlinux-lightdm-gtk-greeter smdlinux-lightdm-gtk-greeter-plasma smdlinux-logout-git smdlinux-logout-themes-git smdlinux-qobbar-git smdlinux-teamviewer smdlinux-tweak-tool-dev-git smdlinux-tweak-tool-git arco-dwm"
+makepkglist="some-package"
 
 for i in $makepkglist
 do
@@ -26,7 +24,7 @@ do
   CHOICE=2
   fi
 done
-
+search=""
 search1=$(basename "$PWD")
 search2=smdlinux
 
@@ -68,8 +66,30 @@ fi
 
 echo "Moving created files to " $destiny
 echo "#############################################################################################"
-mv $search*pkg.tar.zst $destiny
-mv $search*pkg.tar.zst.sig $destiny
+cp $search*pkg.tar.zst $destiny
+cp $search*pkg.tar.zst.sig $destiny
+
+#take special care to special packages
+if [[ $search == "perl-checkupdates-aur" ]]; then
+  cp checkupdates*pkg.tar.zst $destiny
+  cp checkupdates*pkg.tar.zst.sig $destiny
+fi
+
+
+firstLetter="$(echo $search | head -c 1)"
+
+echo "Moving created files to " $destination7/$firstLetter/$search1
+echo "#############################################################################################"
+
+[ -d $destination7/$firstLetter ] && echo "Directory " $firstLetter " exists" || mkdir $destination7/$firstLetter
+[ -d "$destination7/$firstLetter/$search1" ] && echo "Directory " $search1 " exists" || mkdir "$destination7/$firstLetter/$search1"
+
+
+  mv $search*pkg.tar.zst "$destination7/$firstLetter/$search1"
+  mv $search*pkg.tar.zst.sig "$destination7/$firstLetter/$search1"
+
+
+echo "#############################################################################################"
 echo "Cleaning up"
 echo "#############################################################################################"
 echo "deleting unnecessary folders"
