@@ -1,0 +1,29 @@
+# Maintainer: Seth Dawson <seth@sethdawson.me>
+pkgname=smdlinux-geany-git
+_pkgname=smdlinux-geany
+_destname1="/etc/skel/.config/geany/"
+_destname2="/etc/skel/.config/geany/colorschemes/"
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=3.1
+pkgrel=1
+pkgdesc="geany config for smdlinux"
+arch=('any')
+url="https://github.com/smd-linux/smdlinux-geany"
+license=('GPL3')
+makedepends=('git')
+depends=()
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${_pkgname}::"git+https://github.com/smd-linux/${_pkgname}.git")
+sha256sums=('SKIP')
+install='readme.install'
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	install -vdm755 ${pkgdir}${_destname1}
+	install -vDm644  ${srcdir}/${_pkgname}${_destname1}geany.conf ${pkgdir}${_destname1}
+
+	install -dm755 ${pkgdir}${_destname2}
+	install -m644  ${srcdir}/${_pkgname}${_destname2}* ${pkgdir}${_destname2}
+}

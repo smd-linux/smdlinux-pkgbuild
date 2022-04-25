@@ -1,19 +1,17 @@
 # Maintainer: Seth Dawson <seth@sethdawson.me>
-pkgname=smdlinux-conky-collection-git
-_pkgname=smdlinux-conky-collection
-_destname1="/etc/skel/.config/conky/"
-_destname2="/etc/skel/.config/autostart/"
-_destname3="/usr/share/applications/"
-_destname4="/usr/local/bin/"
+pkgname=smdlinux-conky-git
+_pkgname=smdlinux-conky
+_destname1="/etc/skel/.conky/"
 _licensedir="/usr/share/smdlinux/licenses/"
-pkgver=1.2
+pkgver=2.1
 pkgrel=1
 pkgdesc="Conky themes for smdlinux"
 arch=('any')
-url="https://github.com/smd-linux/smdlinux-conky-collection"
+url="https://github.com/smd-linux/smdlinux-conky"
 license=('GPL3')
 makedepends=('git')
 depends=('python' 'bash')
+conflicts=('smdlinux-conky-plasma-git')
 provides=("${pkgname}")
 options=(!strip !emptydirs)
 source=(${_pkgname}::"git+https://github.com/smd-linux/${_pkgname}.git")
@@ -25,13 +23,4 @@ package() {
 
 	install -dm755 ${pkgdir}${_destname1}
 	cp -r  ${srcdir}/${_pkgname}${_destname1}* ${pkgdir}${_destname1}
-
-	install -dm755 ${pkgdir}${_destname2}
-	cp -r  ${srcdir}/${_pkgname}${_destname2}* ${pkgdir}${_destname2}
-
-	install -dm755 ${pkgdir}${_destname3}
-	cp -r  ${srcdir}/${_pkgname}${_destname3}* ${pkgdir}${_destname3}
-
-	install -dm755 ${pkgdir}${_destname4}
-	cp -r  ${srcdir}/${_pkgname}${_destname4}* ${pkgdir}${_destname4}		
 }
