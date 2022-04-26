@@ -1,13 +1,13 @@
 # Maintainer: Seth Dawson <seth.dawson@hotmail.com>
-pkgname=smd-arch-plank-themes-git
-_pkgname=smd-arch-plank-themes
+pkgname=smdlinux-plank-themes-git
+_pkgname=smdlinux-plank-themes
 _destname1="/usr/share/plank/themes/"
-_licensedir="/usr/share/smd-arch/licenses/"
-pkgver=1.1
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=3.0
 pkgrel=1
-pkgdesc="Plank themes for smd-arch"
+pkgdesc="Plank themes for SMD-Linux"
 arch=('any')
-url="https://github.com/smd-linux/smd-arch-plank-themes"
+url="https://github.com/smd-linux/smdlinux-plank-themes"
 license=('GPL3')
 makedepends=('git')
 depends=()

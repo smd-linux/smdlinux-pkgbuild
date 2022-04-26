@@ -1,13 +1,13 @@
 # Maintainer: Seth Dawson <seth@sethdawson.me>
-pkgname=smd-arch-plank-git
-_pkgname=smd-arch-plank
+pkgname=smdlinux-plank-git
+_pkgname=smdlinux-plank
 _destname1="/etc/skel/.config/plank/dock1/launchers/"
-_licensedir="/usr/share/smd-arch/licenses/"
-pkgver=1.1
-pkgrel=7
-pkgdesc="plank config for smd-arch"
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=3.0
+pkgrel=1
+pkgdesc="plank config for SMD-Linux"
 arch=('any')
-url="https://github.com/smd-linux/smd-arch-plank"
+url="https://github.com/smd-linux/smdlinux-plank"
 license=('GPL3')
 makedepends=('git')
 depends=()

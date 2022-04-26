@@ -1,13 +1,13 @@
-# Maintainer: Erik Dubois <erik.dubois@gmail.com>
-pkgname=smd-arch-qt5-git
-_pkgname=smd-arch-qt5
+# Maintainer: Seth Dawson <seth@sethdawson.me>
+pkgname=smdlinux-qt5-git
+_pkgname=smdlinux-qt5
 _destname1="/etc/skel/.config/qt5ct/"
-_licensedir="/usr/share/smd-arch/licenses/"
-pkgver=1.1
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=3.0
 pkgrel=1
-pkgdesc="configuration files for smd-arch"
+pkgdesc="configuration files for SMD-Linux"
 arch=('any')
-url="https://github.com/smd-linux/smd-arch-qt5"
+url="https://github.com/smd-linux/smdlinux-qt5"
 license=('GPL3')
 makedepends=('git')
 depends=()
