@@ -1,16 +1,16 @@
 # Maintainer: Seth Dawson <seth@sethdawson.me>
-pkgname=smd-arch-config-xfce-git
-_pkgname=smd-arch-config-xfce
+pkgname=smdlinux-config-xfce-git
+_pkgname=smdlinux-config-xfce
 _destname1="/etc/skel/.config/"
-_licensedir="/usr/share/smd-arch/licenses/"
-pkgver=1.1
-pkgrel=4
-pkgdesc="Configuration files for smd-arch"
+_licensedir="/usr/share/smdlinux/licenses/"
+pkgver=3.0
+pkgrel=1
+pkgdesc="Configuration files for SMD-Linux XFCE"
 arch=('any')
-url="https://github.com/smd-linux/smd-arch-config-xfce"
+url="https://github.com/smd-linux/smdlinux-config-xfce"
 license=('GPL3')
 makedepends=('git')
-conflicts=(smd-arch-config-git)
+conflicts=(smd-arch-config-plasma-git)
 depends=()
 provides=("${pkgname}")
 options=(!strip !emptydirs)
