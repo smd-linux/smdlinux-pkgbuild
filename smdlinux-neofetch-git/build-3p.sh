@@ -1,12 +1,11 @@
 #!/bin/bash
 #https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_Clean_Chroot
 
-destination1=$HOME"/Documents/smdlinux/smdlinux-repo/smdlinux_repo/x86_64/"
-destination2=$HOME"/Documents/smdlinux/smdlinux-repo/smdlinux_repo_3party/x86_64/"
-destination3=$HOME"/Documents/smdlinux/smdlinux-repo/smdlinux_repo_iso/x86_64/"
-destination4=$HOME"/Documents/smdlinux/smdlinux-repo/smdlinux_repo_testing/x86_64/"
-destination7=$HOME"/Documents/smdlinux/archives/packages"
-
+destination1=$HOME"/smdlinux/smdlinux-repo/smdlinux_repo/x86_64/"
+destination2=$HOME"/smdlinux/smdlinux-repo/smdlinux_repo_3party/x86_64/"
+destination3=$HOME"/smdlinux/smdlinux-repo/smdlinux_repo_iso/x86_64/"
+destination4=$HOME"/smdlinux/smdlinux-repo/smdlinux_repo_testing/x86_64/"
+destination7=$HOME"/smdlinux/archives/packages"
 destiny=$destination1
 
 # 2. makepkg"
@@ -46,7 +45,7 @@ if [[ $CHOICE == "1" ]] ; then
   echo "#########        Let us build the package in CHROOT "$(basename `pwd`)
   echo "#############################################################################################"
   tput sgr0
-  CHROOT=$HOME/Documents/chroot
+  CHROOT=$HOME/smdlinux/chroot
   arch-nspawn $CHROOT/root pacman -Syu
   makechrootpkg -c -r $CHROOT
 
